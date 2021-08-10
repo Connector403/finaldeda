@@ -5,18 +5,27 @@ import $ from "jquery";
 
 const Navbar = () => {
   function animation() {
+
+    // get the height width, position of the .active item of navbar
     var tabsNewAnim = $("#navbarSupportedContent");
     var activeItemNewAnim = tabsNewAnim.find(".active");
     var activeWidthNewAnimHeight = activeItemNewAnim.innerHeight();
     var activeWidthNewAnimWidth = activeItemNewAnim.innerWidth();
     var itemPosNewAnimTop = activeItemNewAnim.position();
     var itemPosNewAnimLeft = activeItemNewAnim.position();
+
+    // add px instead of rem for precision
     $(".hori-selector").css({
       top: itemPosNewAnimTop.top + "px",
       left: itemPosNewAnimLeft.left + "px",
       height: activeWidthNewAnimHeight + "px",
       width: activeWidthNewAnimWidth + "px",
     });
+    
+
+    // initial one calls active but upon clicking any item of navbar
+    // it should remove calss active and add class active to whatever is selected 
+    // the same animation is added to whatever is selected 
     $("#navbarSupportedContent").on("click", "li", function (e) {
       $("#navbarSupportedContent ul li").removeClass("active");
       $(this).addClass("active");
@@ -33,6 +42,8 @@ const Navbar = () => {
     });
   }
 
+
+  // animate on startup on desktop size or reanime if window  size is changed 
   useEffect(() => {
     animation();
     $(window).on("resize", function () {
@@ -55,6 +66,7 @@ const Navbar = () => {
         Web Solutions
       </NavLink>
 
+        {/* if menu is toggled on smaller screen replay animation  */}
       <button
         className="navbar-toggler"
         onClick={function () {
@@ -81,7 +93,7 @@ const Navbar = () => {
 
           <li className="nav-item active">
             <NavLink className="nav-link" to="/" exact>
-              <i className="fas fa-tachometer-alt"></i>Home
+              <i className="fas fa-home"></i>Home
             </NavLink>
           </li>
 
@@ -94,13 +106,13 @@ const Navbar = () => {
             </li> */}
           <li className="nav-item">
             <NavLink className="nav-link" to="/news" exact>
-              <i className="far fa-address-book"></i>News
+              <i className="far fa-newspaper"></i>News
             </NavLink>
           </li>
 
           <li className="nav-item">
             <NavLink className="nav-link" to="/contact" exact>
-              <i className="far fa-copy"></i>Contact Us
+              <i className="fas fa-user-plus"></i>Sign Up
             </NavLink>
           </li>
         </ul>
