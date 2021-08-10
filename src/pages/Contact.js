@@ -1,11 +1,29 @@
-import React from 'react'
+import React, { useState } from "react";
+import FormSignUp from "../Components/FormSignUp";
+import FormSuccess from "../Components/FormSuccess";
+import "../Components/Form.css";
+const Form = () => {
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-function Contact() {
-    return (
-        <div>
-            <h1>Welcome Contact Page</h1>
-        </div>
-    )
-}
+  function submitForm() {
+    setIsSubmitted(true);
+  }
 
-export default Contact
+  return (
+    <>
+    
+      <div className="form-container">
+      {!isSubmitted ? (
+          <FormSignUp submitForm={submitForm} />
+        ) : (
+          <FormSuccess />
+        )}
+    
+     
+       
+      </div>
+    </>
+  );
+};
+
+export default Form;
